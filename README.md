@@ -22,7 +22,7 @@ Returns the MAC address corresponding to the provided IP address. If no MAC addr
 
 ## Example
 
-Here's a simple example of how to use `usb-lookup`:
+Here's a simple example of how to use `arp-lookup`:
 ```javascript
 const { getIPFromMACAddress, getMACAddressFromIP } = require('arp-lookup');
 
