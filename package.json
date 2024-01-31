@@ -1,0 +1,18 @@
+{
+  "name": "arp-lookup",
+  "version": "1.0.0",
+  "description": "Library for performing ARP lookups to find IP addresses from MAC addresses and vice versa.",
+  "main": "index.js",
+  "types": "types.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "author": "Valentin Arapaj",
+  "license": "MIT",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "node-addon-api": "^7.1.0"
+  },
+  "gypfile": true
+}
