@@ -1,6 +1,6 @@
 {
   "name": "arp-lookup",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library for performing ARP lookups to find IP addresses from MAC addresses and vice versa.",
   "main": "index.js",
   "types": "types.d.ts",
