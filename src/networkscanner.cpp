@@ -9,6 +9,30 @@
 #pragma comment(lib, "IPHLPAPI.lib")
 #pragma comment(lib, "Ws2_32.lib") 
 
+std::string wideCharToString(const wchar_t* wideCharStr) {
+    int bufferSize = WideCharToMultiByte(CP_UTF8, 0, wideCharStr, -1, nullptr, 0, nullptr, nullptr);
+    if (bufferSize == 0) {
+        std::cerr << "WideCharToMultiByte failed\n";
+        return "";
+    }
+
+    std::string result(bufferSize - 1, 0);
+    if (WideCharToMultiByte(CP_UTF8, 0, wideCharStr, -1, &result[0], bufferSize, nullptr, nullptr) == 0) {
+        std::cerr << "WideCharToMultiByte failed\n";
+        return "";
+    }
+
+    return result;
+}
+
+std::string toLowercase(const std::string& str) {
+    std::string result = str;
+    for (char& c : result) {
+        c = std::tolower(c);
+    }
+    return result;
+}
+
 std::string getMACAddressFromIP(const std::string& ipAddress) {
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -91,28 +115,4 @@ std::string getIPFromMACAddress(const std::string& macAddress) {
     free(pIpNetTable);
     WSACleanup();
     return foundIPAddress;
-}
-
-std::string wideCharToString(const wchar_t* wideCharStr) {
-    int bufferSize = WideCharToMultiByte(CP_UTF8, 0, wideCharStr, -1, nullptr, 0, nullptr, nullptr);
-    if (bufferSize == 0) {
-        std::cerr << "WideCharToMultiByte failed\n";
-        return "";
-    }
-
-    std::string result(bufferSize - 1, 0);
-    if (WideCharToMultiByte(CP_UTF8, 0, wideCharStr, -1, &result[0], bufferSize, nullptr, nullptr) == 0) {
-        std::cerr << "WideCharToMultiByte failed\n";
-        return "";
-    }
-
-    return result;
-}
-
-std::string toLowercase(const std::string& str) {
-    std::string result = str;
-    for (char& c : result) {
-        c = std::tolower(c);
-    }
-    return result;
 }
